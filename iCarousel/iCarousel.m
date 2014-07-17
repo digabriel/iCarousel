@@ -580,10 +580,6 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             }
             else
             {
-                
-                CGFloat count = [self circularCarouselItemCount];
-                CGFloat spacing = 1.5f;
-                CGFloat arc = M_PI * 2.0f;
                 CGFloat radius = self.itemWidth * spacing * count / arc;
                 CGFloat angle = arc / count * offset;
                 
