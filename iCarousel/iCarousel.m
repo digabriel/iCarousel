@@ -580,9 +580,14 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             }
             else
             {
-                transform = CATransform3DTranslate(transform, 0.0f, radius, 0.0f);
-                transform = CATransform3DRotate(transform, angle * offset, 0.0f, 0.0f, 1.0f);
-                return CATransform3DTranslate(transform, 0.0f, -radius, offset * 0.01f);
+                
+                CGFloat count = [self circularCarouselItemCount];
+                CGFloat spacing = 1.5f;
+                CGFloat arc = M_PI * 2.0f;
+                CGFloat radius = self.itemWidth * spacing * count / arc;
+                CGFloat angle = arc / count * offset;
+                
+                return CATransform3DTranslate(transform, radius * sin(angle), radius - radius * cos(angle), 0.0f);
             }
         }
         case iCarouselTypeCoverFlow:
