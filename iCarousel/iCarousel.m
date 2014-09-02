@@ -2126,6 +2126,31 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     }
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
+    CGFloat radius = 100.0;
+    CGRect frame = CGRectMake(0, 0,
+                              self.frame.size.width + radius,
+                              self.frame.size.height + radius);
+    
+    if (CGRectContainsPoint(frame, point)) {
+        return YES;
+    }
+    
+    return [super pointInside:point withEvent:event];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    CGFloat radius = 100.0;
+    CGRect frame = CGRectMake(-50, -50,
+                              self.frame.size.width + radius,
+                              self.frame.size.height + radius);
+    
+    if (CGRectContainsPoint(frame, point)) {
+        return _contentView;
+    }
+    return [super hitTest:point withEvent:event];
+}
+
 #else
 
 
